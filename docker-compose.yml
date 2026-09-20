@@ -1,0 +1,51 @@
+﻿# Local run of the whole stack (spec Â§10): the projection store plus the read-side API.
+#   docker compose up --build
+# The API seeds itself on startup (Seed:RunOnStartup), so the store is demo-ready the moment
+# /health answers. Postgres is the documented projection store (spec Â§3); SQLite remains the
+# zero-dependency alternative via the "Ledger.Api (sqlite)" launch profile.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ledger_read
+      POSTGRES_USER: ledger
+      POSTGRES_PASSWORD: ledger
+    ports:
+      - "5432:5432"
+    volumes:
+      - ledger-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ledger -d ledger_read"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "5080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ReadModel__Provider: Postgres
+      ReadModel__ConnectionString: Host=postgres;Port=5432;Database=ledger_read;Username=ledger;Password=ledger
+      # Same checked-in demo key as appsettings.Development.json â€” local demo only.
+      Jwt__SigningKey: ledger-demo-signing-key-do-not-use-outside-this-demo-0123456789
+      Observability__ExposeSqlQueryCount: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    volumes:
+      # Persisted-operation hashes regenerated at startup; not shipped in the image.
+      - ledger-store-data:/app/operations/.store
+
+
+volumes:
+  ledger-pgdata:
+  ledger-store-data:
+

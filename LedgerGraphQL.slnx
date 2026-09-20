@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <!-- Aspire AppHost for local development only (not used in Docker builds) -->
+    <!-- <Project Path="src/Ledger.AppHost/Ledger.AppHost.csproj" /> -->
+    <Project Path="src/Ledger.GraphQL.Api/Ledger.GraphQL.Api.csproj" />
+    <Project Path="src/Ledger.ReadModel/Ledger.ReadModel.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Ledger.GraphQL.Tests/Ledger.GraphQL.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Ledger.Benchmark/Ledger.Benchmark.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,43 @@
+<Project>
+  <!-- Central Package Management: all NuGet versions live here.
+       Projects declare <PackageReference Include="..." /> WITHOUT Version. -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- HotChocolate (keep the whole family on one version) -->
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="16.6.6" />
+    <PackageVersion Include="HotChocolate.AspNetCore.Authorization" Version="16.6.6" />
+    <PackageVersion Include="HotChocolate.CostAnalysis" Version="16.6.6" />
+    <PackageVersion Include="HotChocolate.Diagnostics" Version="16.6.6" />
+    <PackageVersion Include="HotChocolate.PersistedOperations.FileSystem" Version="16.6.6" />
+
+    <!-- ASP.NET Core / EF Core (aligned to .NET 10) -->
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.12" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
+    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.23.0" />
+
+    <!-- Observability -->
+    <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.19.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.19.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.19.0" />
+
+    <!-- Aspire -->
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.5.4" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSql" Version="13.5.4" />
+
+    <!-- Testing -->
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.15.0" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+</Project>

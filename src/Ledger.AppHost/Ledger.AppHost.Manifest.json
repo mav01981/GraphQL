@@ -1,0 +1,8 @@
+{
+  "name": "Ledger.AppHost",
+  "configTree": {
+    "postgres": {
+      "connectionString": "{{postgres__connectionString}}"
+    }
+  }
+}

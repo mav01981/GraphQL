@@ -1,0 +1,51 @@
+## .NET / Visual Studio
+bin/
+obj/
+out/
+TestResults/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/*-chat/
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+## Build / publish output
+publish/
+*.nupkg
+*.snupkg
+artifacts/
+!artifacts/.gitkeep
+
+## Runtime / local dev databases (seeded at startup or via --seed)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+ledger-read.dev.db*
+
+## HotChocolate persisted-operation store (generated at startup by PersistedOperationAllowlist)
+src/Ledger.GraphQL.Api/operations/.store/
+
+## Aspire / CLI scratch output
+aspire_output.txt
+aspire_error.txt
+.scratch/
+.claude/settings.local.json
+
+## Secrets — never commit real keys (demo key in appsettings.Development.json is intentional)
+appsettings.*.Production.json
+*.pfx
+.env
+
+## OS / editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~

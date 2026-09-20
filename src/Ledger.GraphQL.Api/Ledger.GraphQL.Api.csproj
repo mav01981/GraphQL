@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ledger.ReadModel\Ledger.ReadModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.AspNetCore" />
+    <!-- The ASP.NET Core policy integration (the IAuthorizationHandler behind [Authorize(policy: ...)]).
+         HotChocolate.Authorization alone only ships the directive + the handler extension point. -->
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" />
+    <!-- Cost analysis (ADR-003): the analyser that enforces MaxFieldCost/MaxTypeCost and raises the
+         OperationCost diagnostic event is a separate package in HotChocolate 16. -->
+    <PackageReference Include="HotChocolate.CostAnalysis" />
+    <PackageReference Include="HotChocolate.Diagnostics" />
+    <PackageReference Include="HotChocolate.PersistedOperations.FileSystem" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The persisted-operation allowlist is published from here at startup (spec §6). -->
+    <Content Include="operations\*.graphql" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>ledger-graphql-read-api</UserSecretsId>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+query AccountBalances($first: Int = 25) {
+  accounts(first: $first, filter: { type: ASSET }) {
+    edges {
+      node {
+        id
+        name
+        currency
+        balance {
+          amount
+          currency
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

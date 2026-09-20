@@ -1,0 +1,30 @@
+# Build artifacts
+**/bin/
+**/obj/
+**/artifacts/
+
+# IDE and editor files
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Local databases (never intended for Docker)
+*.db
+*.db-shm
+*.db-wal
+
+# Persisted-operation store (runtime-generated; re-created at startup)
+src/Ledger.GraphQL.Api/operations/.store/
+
+# Ignore test and tool source during the second COPY phase (only needed for dotnet restore caching)
+# The Dockerfile controls what gets published - only the API project is published into the final image
+src/Ledger.GraphQL.Api/operations/.store/
+src/Ledger.AppHost/
+# Scratch and temp
+.scratch/
+*.log
+docker-compose.override.yml
+
